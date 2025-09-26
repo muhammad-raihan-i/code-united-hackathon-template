@@ -93,52 +93,125 @@ export default function Register() {
     }
   }
   return (
-    <form onSubmit={onSubmit}>
-      <div className="mb-3">
-        <label htmlFor="username" className="form-label">
-          Username
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="username"
-          value={username}
-          onChange={(e) => SETusername(e.target.value)}
-          placeholder="Enter your username"
-          required
-        />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        backgroundColor: "#f5f5f5",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "orange",
+          padding: "40px",
+          borderRadius: "20px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          maxWidth: "400px",
+          width: "100%",
+        }}
+      >
+        <h2
+          style={{
+            textAlign: "center",
+            marginBottom: "30px",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Register
+        </h2>
+        <form onSubmit={onSubmit}>
+          <div className="mb-3">
+            <label
+              htmlFor="username"
+              className="form-label"
+              style={{ color: "white", fontWeight: "500" }}
+            >
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              value={username}
+              onChange={(e) => SETusername(e.target.value)}
+              placeholder="Enter your username"
+              required
+              style={{
+                borderRadius: "10px",
+                border: "2px solid white",
+                padding: "12px",
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <label
+              htmlFor="password"
+              className="form-label"
+              style={{ color: "white", fontWeight: "500" }}
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              value={password}
+              onChange={(e) => SETpassword(e.target.value)}
+              placeholder="Enter your password (min. 6 characters)"
+              required
+              style={{
+                borderRadius: "10px",
+                border: "2px solid white",
+                padding: "12px",
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <label
+              htmlFor="confirmPassword"
+              className="form-label"
+              style={{ color: "white", fontWeight: "500" }}
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => SETconfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+              required
+              style={{
+                borderRadius: "10px",
+                border: "2px solid white",
+                padding: "12px",
+              }}
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            style={{
+              width: "100%",
+              borderRadius: "10px",
+              padding: "12px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              backgroundColor: "white",
+              color: "orange",
+              border: "2px solid white",
+              marginTop: "20px",
+            }}
+          >
+            Register
+          </button>
+        </form>
       </div>
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          value={password}
-          onChange={(e) => SETpassword(e.target.value)}
-          placeholder="Enter your password (min. 6 characters)"
-          required
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="confirmPassword" className="form-label">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          id="confirmPassword"
-          value={confirmPassword}
-          onChange={(e) => SETconfirmPassword(e.target.value)}
-          placeholder="Confirm your password"
-          required
-        />
-      </div>
-      <button type="submit" className="btn btn-primary">
-        Register
-      </button>
-    </form>
+    </div>
   );
 }
