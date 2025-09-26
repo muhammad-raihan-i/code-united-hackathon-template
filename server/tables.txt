@@ -1,0 +1,2 @@
+npx sequelize model:create --name User --attributes username:string,password:string
+npx sequelize model:create --name Palette --attributes palette:string,userId:string
