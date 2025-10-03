@@ -4,7 +4,7 @@
 //this time, no login needed!
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import http from "../helpers/http";
 import Navbar from "../components/navbar";
 import Card from "../components/card";
 import Swal from "sweetalert2";
@@ -22,7 +22,7 @@ export default function MainPage() {
     try {
       setLoading(true);
       // Get all palettes without authentication
-      const response = await axios.get("/palettes/public");
+      const response = await http.get("/palettes");
 
       if (response.status === 200) {
         setPalettes(response.data.palettes || response.data);
@@ -33,7 +33,7 @@ export default function MainPage() {
 
       // If public endpoint doesn't exist, try the regular endpoint
       try {
-        const response = await axios.get("/palettes");
+        const response = await axios.get("/");
         if (response.status === 200) {
           setPalettes(response.data.palettes || response.data);
         }
