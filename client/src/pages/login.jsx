@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import axios from "axios";
+import http from "../helpers/http";
 
 export default function Login() {
   const [username, SETusername] = useState("");
@@ -21,7 +21,7 @@ export default function Login() {
         return;
       }
       // Make API call to login endpoint
-      const response = await axios.post("/login", {
+      const response = await http.post("/login", {
         username,
         password,
       });

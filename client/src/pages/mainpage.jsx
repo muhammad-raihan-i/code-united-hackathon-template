@@ -1,9 +1,4 @@
-//call the navbar i;ve made before
-//then this page is filled with ALL CARDS (see components/card.jsx)
-//you can get all the palettes using axios
-//this time, no login needed!
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import http from "../helpers/http";
 import Navbar from "../components/navbar";
 import Card from "../components/card";
@@ -20,34 +15,17 @@ export default function MainPage() {
 
   const fetchAllPalettes = async () => {
     try {
+      console.log("try fetchAllPalettes");
       setLoading(true);
       // Get all palettes without authentication
       const response = await http.get("/palettes");
-
+      console.log("response", response);
       if (response.status === 200) {
         setPalettes(response.data.palettes || response.data);
       }
-      console.log("palettes", palettes);
     } catch (error) {
-      console.error("Error fetching palettes:", error);
-
+      console.log("Error fetching palettes:", error);
       // If public endpoint doesn't exist, try the regular endpoint
-      try {
-        const response = await axios.get("/");
-        if (response.status === 200) {
-          setPalettes(response.data.palettes || response.data);
-        }
-      } catch (secondError) {
-        console.error("Error fetching palettes (second attempt):", secondError);
-
-        Swal.fire({
-          icon: "info",
-          title: "No Palettes Available",
-          text: "Unable to load palettes at the moment.",
-          timer: 3000,
-          showConfirmButton: false,
-        });
-      }
     } finally {
       setLoading(false);
     }
@@ -124,9 +102,7 @@ export default function MainPage() {
                 <Card
                   key={palette.id}
                   id={palette.id}
-                  userId={
-                    palette.userId || palette.user?.username || "Unknown User"
-                  }
+                  username={palette.User.username}
                   palette={palette.palette}
                 />
               ))}

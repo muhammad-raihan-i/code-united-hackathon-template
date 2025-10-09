@@ -6,7 +6,7 @@
 import React from "react";
 import ColorBox from "./colorbox";
 
-const Card = ({ id, userId, palette }) => {
+const Card = ({ id, userId, username, palette }) => {
   // Parse the palette format RRR,GGG,BBB;RRR,GGG,BBB; into individual colors
   const parseColors = (paletteString) => {
     if (!paletteString) return [];
@@ -49,7 +49,7 @@ const Card = ({ id, userId, palette }) => {
   return (
     <div style={cardStyle}>
       <div style={headerStyle}>
-        Color palette no. {id}, created by {userId}
+        Color palette no. {id}, created by {username}
       </div>
       <div style={colorsContainerStyle}>
         {colors.map((color, index) => (
