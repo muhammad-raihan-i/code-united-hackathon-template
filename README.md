@@ -1,14 +1,17 @@
-# Project Title
+# Palette Maker
 
-A short description of your project.
+Share your own palettes worldwide! Choose up to 5 colors to make a palette.
 
 ---
 
 ## Tech Stack
 
-- …
-- …
-- …
+- ExpressJS
+- Postgres
+- Sequelize
+- ReactJS
+- Vite
+- AxiosJS
 
 ---
 

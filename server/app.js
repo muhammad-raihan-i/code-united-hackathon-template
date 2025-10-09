@@ -1,10 +1,12 @@
 require("dotenv").config;
 const express = require("express");
+const cors = require("cors");
 const UserController = require("./controllers/UserController");
 const PaletteController = require("./controllers/PaletteController");
 const jwt = require("./helpers/jwt");
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -18,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 // Authentication middleware
-const authenticate = (req, res, next) => {
+function authenticate(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
@@ -36,7 +38,7 @@ const authenticate = (req, res, next) => {
   } catch (error) {
     return res.status(401).json({ message: "Invalid token" });
   }
-};
+}
 
 //write all the routes here
 // User routes
@@ -44,8 +46,8 @@ app.post("/register", UserController.register);
 app.post("/login", UserController.login);
 
 // Palette routes (protected)
+app.get("/palettes", PaletteController.getAll);
 app.post("/palettes", authenticate, PaletteController.create);
-app.get("/palettes", authenticate, PaletteController.getAll);
 app.get("/palettes/:id", authenticate, PaletteController.getById);
 app.put("/palettes/:id", authenticate, PaletteController.update);
 app.delete("/palettes/:id", authenticate, PaletteController.delete);

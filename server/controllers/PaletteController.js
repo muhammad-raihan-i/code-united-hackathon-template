@@ -1,4 +1,5 @@
 const { Palette } = require("../models");
+const { User } = require("../models");
 //palette data is a string that contains numbers, comma, and semicolon
 //format: RRR,GGG,BBB;RRR,GGG,BBB;RRR,GGG,BBB;
 //maximum 5 colors
@@ -86,17 +87,20 @@ class PaletteController {
 
   static async getAll(req, res) {
     try {
-      const userId = req.user?.id;
+      //   const userId = req.user?.id;
 
-      if (!userId) {
-        return res.status(401).json({
-          message: "Authentication required",
-        });
-      }
+      //   if (!userId) {
+      //     return res.status(401).json({
+      //       message: "Authentication required",
+      //     });
+      //   }
 
       const palettes = await Palette.findAll({
-        where: { userId },
-        order: [["createdAt", "DESC"]],
+        order: [["updatedAt", "DESC"]],
+        include: {
+          model: User,
+          attributes: ["id", "username"],
+        },
       });
 
       res.status(200).json({
